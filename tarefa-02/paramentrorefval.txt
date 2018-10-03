@@ -1,0 +1,68 @@
+///Programa em c++
+
+#include <iostream>
+using namespace std;
+
+
+class Pessoa
+	{
+	public:
+	
+	int idade;
+	string nome;
+	
+	
+	void Inicialisador(string n, int nu)
+		{
+		nome = n;
+		idade = nu;	
+		}
+	
+	
+	
+	};
+
+	
+void AlteraC(Pessoa A)
+	{
+	A.idade = 360;
+	A.nome = "JOJO";
+	}
+	
+void AlteraC(Pessoa* A)
+	{
+	A->idade = 360;
+	A->nome = "JOJO";
+	}
+
+	
+int main()
+	{
+	Pessoa P; 
+	
+	P.Inicialisador("Jhonatan", 100);  
+	cout << P.idade<<" "<< P.nome<<"\n";
+	
+	AlteraC(P);
+	cout << P.idade<<" "<< P.nome<<"\n";
+	
+	AlteraC(&P);
+	cout << P.idade<<" "<< P.nome<<"\n";
+	
+	return(0);
+	}
+	
+	
+///Programa em c#
+
+Vemos em c++ a declaração de uma classe e a manipulação de um objeto criado da mesma, porem há uma pequena detalhe que progamadores inexperentes podem deixar
+passar, trabalhar em com parametro pro referencia e/ou valor, note q na primeira função "AlteraC" onde se passa um valor, se há a intensão de modificar o objeto
+P, foi emplementado de forma incorreta, pois ao chamar a função com valor, oq realmente acontece, se faz nova declaração da classe pessoa onde o argumento A não terar o msm endereço
+do valor P em main(), pois qualquer mudança dentro desse escopo sera feia apenas em no valor copiado e nã oa fetarar nada no escopo do programa principal
+, para contornar isso, basta apenas se passar uma referencia a esse objeto, logo não sera um copia e sim, o endereço, sendo possivel alterar qualquer dado referente a esse objeto
+dentro do escopo da propria função que trabalha com ponteiros.
+Em c#, não há necessidade de se preocupar em tratamento por referencia ou valor, pos todo indentificador de objeto/classe sempre é uma referência, uma vez que é muito mais simples eu transferir
+um ponteiro do que todo o valor em sí(sendo que algumas classes podem ser muito mais pesadas do que os tipo primitivos), os desenvolvedores optaram por, normalmente, sempre que 
+se trabalha com objetos se usa referencia.
+Esse metodo usado em c# é de grande ajudo, pois da menso "preocupação lexica" na ora de programar, porém isso não deixa de ser uma forma de restringir como o progamador que se expressar.
+	
